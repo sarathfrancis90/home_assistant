@@ -1,0 +1,33 @@
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=1&subtype=1"
+  name: Foyer
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=2&subtype=1"
+  name: Right Sideyard
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=3&subtype=1"
+  name: Left Sideyard
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=4&subtype=1"
+  name: Backyard
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=5&subtype=1"
+  name: Living Room
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=6&subtype=1"
+  name: Driveway
+
+- platform: ffmpeg
+  input: "rtsp://admin:!@m@w35om3@192.168.1.23:554/cam/realmonitor?channel=7&subtype=1"
+  name: Bonus Room
+
+- platform: skybell
+  monitored_conditions:
+    - avatar
+    - activity
+  activity_name: "Last Activity"

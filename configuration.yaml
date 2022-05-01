@@ -1,0 +1,35 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+camera: !include cameras.yaml
+
+cover:
+  - platform: aladdin_connect
+    username: sarathfrancis90@gmail.com
+    password: Kj3tkipy!
+
+nest:
+  client_id: 148679502624-icjc1qegq980jepv3j1u3fits099va9o.apps.googleusercontent.com
+  client_secret: GB0kJYFTz-LL2_NA-Em0s2ee
+  # "Project ID" in the Device Access Console
+  project_id: e7af576b-7ecc-431d-a4eb-dc2a8dc417aa
+  # Provide the full path exactly as shown under "Subscription name" in Google Cloud Console
+  subscriber_id: projects/home-assistant-326519/subscriptions/Home-Assistant
+
+# alarm_control_panel:
+#   - platform: manual
+#     name: home_alarm
+#     code: !secret alarm_code
+#     arming_time: 0
+#     delay_time: 0

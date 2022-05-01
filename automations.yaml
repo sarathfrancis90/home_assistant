@@ -1,0 +1,88 @@
+- id: '1632684445917'
+  alias: Sunset Automations
+  description: Automations to be triggered by the Sunset event
+  trigger:
+  - platform: sun
+    event: sunset
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 3f7624d6c028c3e78922ddeeac41b997
+    entity_id: light.node_4
+    domain: light
+    brightness_pct: 100
+  mode: single
+- id: '1632684961880'
+  alias: Sunrise Automation
+  description: Automations to be triggered the Sunrise event
+  trigger:
+  - platform: sun
+    event: sunrise
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 3f7624d6c028c3e78922ddeeac41b997
+    entity_id: light.node_4
+    domain: light
+  mode: single
+- id: '1632686784400'
+  alias: Trigger Alarm when armed Away
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: b552f38678eb1f7e852753b90ffc919a
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_on_off
+    domain: binary_sensor
+  - type: opened
+    platform: device
+    device_id: 60c9dc066a9c3dc234a0a6cf5cfa93ba
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_e7150b07_on_off
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.home_alarm
+    state: armed_away
+  action:
+  - service: alarm_control_panel.alarm_trigger
+    target:
+      entity_id: alarm_control_panel.home_alarm
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.1.28:8123/local/alarm_sound.mp3
+      media_content_type: music
+    target:
+      entity_id: media_player.kitchen_speaker
+  mode: single
+- id: '1634327511150'
+  alias: Garage Door Open Notification
+  description: Notify when Garage door is opened
+  trigger:
+  - platform: state
+    entity_id: cover.garage_door
+    to: open
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.1.28:8123/local/garage_is_open.mp3
+      media_content_type: music
+    target:
+      device_id: d93870b2270bcfe246e76ccdd2d1286d
+  mode: single
+- id: '1634327511151'
+  alias: Garage Door Close Notification
+  description: Notify when Garage door is closing
+  trigger:
+  - platform: state
+    entity_id: cover.garage_door
+    to: closed
+  condition: []
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.1.28:8123/local/garage_is_closed.mp3
+      media_content_type: music
+    target:
+      device_id: d93870b2270bcfe246e76ccdd2d1286d
+  mode: single
